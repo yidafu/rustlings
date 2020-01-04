@@ -1,10 +1,14 @@
+use std::convert::TryInto;
+
 // enums3.rs
 // Address all the TODOs to make the tests pass!
 
-// I AM NOT DONE
-
 enum Message {
     // TODO: implement the message variant types based on their usage below
+    Move{x: i32, y: i32},
+    Echo(String),
+    ChangeColor(i32, i32, i32),
+    Quit,
 }
 
 struct Point {
@@ -37,6 +41,20 @@ impl State {
 
     fn process(&mut self, message: Message) {
         // TODO: create a match expression to process the different message variants
+        match message {
+            Message::Move{x, y} => self.move_position(Point{
+                x: x.try_into().unwrap(),
+                y: y.try_into().unwrap()},
+            ),
+            Message::Quit => self.quit(),
+            Message::Echo(echo) => self.echo(echo),
+            Message::ChangeColor(r, g, b) => self.change_color((
+                r.try_into().unwrap(), 
+                g.try_into().unwrap(), 
+                b.try_into().unwrap(),
+            )),
+            _ => println!("default"),
+        }
     }
 }
 

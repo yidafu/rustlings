@@ -1,4 +1,4 @@
-#!/usr/bin/env pwsh
+in#!/usr/bin/env pwsh
 
 #Requires -Version 5
 param($path = "$pwd/rustlings")
